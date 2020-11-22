@@ -126,11 +126,8 @@ void Game(){
 		//mass[i].y=rand() % 2;
 		//LCDPrint("|", rand() % 2,mass[i].x);
 	//}
-	generator_of_obstacles();
-	speed = 500;
-	OCR1A = speed * 1;
-	TCNT1 = 0;
-	TCCR1B |= (1 << CS12) | (1 << CS10); // div 1024
+	//generator_of_obstacles();
+	lvl_2();
 
 
 }
@@ -189,6 +186,11 @@ void displeyScrollOnCounter(int n){
 void generator_of_obstacles(){
 		int temp_x=0;
 		int temp_y=0;
+		//speed = 500;
+		OCR1AH = 0b01111010;
+		OCR1AL = 0b00010010;
+		//TCNT1 = 0;
+		TCCR1B |= (1 << CS11) | (1 << CS10) ; // div 1024
 		for(int i=0;i<size_mas;i++)
 		{
 			temp_x+=3;
@@ -197,6 +199,25 @@ void generator_of_obstacles(){
 			mass[i].y=temp_y;
 			LCDPrint("|", temp_y,temp_x);
 		}
+		
+}
+
+void lvl_2(){
+			int temp_x=0;
+			int temp_y=0;
+			//speed = 500;
+			OCR1AH = 0b01111010;
+			OCR1AL = 0b00010010;
+			//TCNT1 = 0;
+			TCCR1B |= (1 << CS10); // div 256
+			for(int i=0;i<size_mas;i++)
+			{
+				temp_x+=3;
+				temp_y=rand() % 2;
+				mass[i].x=temp_x;
+				mass[i].y=temp_y;
+				LCDPrint("|", temp_y,temp_x);
+			}
 }
 void RunGame(){
 	
@@ -205,6 +226,7 @@ void RunGame(){
 	{
 		LCDSendCommand(0x01);
 		generator_of_obstacles();
+		//lvl_2();
 		run_man_position.x=1;
 		counter=0;
 		 
