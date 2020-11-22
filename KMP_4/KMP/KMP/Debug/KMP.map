@@ -37,8 +37,6 @@ Discarded input sections
  .text.LCDSendCommand
                 0x00000000        0xc main.o
  .text.endGame  0x00000000       0x1e main.o
- .text.chekPixel
-                0x00000000        0x2 main.o
  .text.displeyScrollOnCounter
                 0x00000000       0x2e main.o
  .bss.temp_counter_2
@@ -307,7 +305,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x654
+.text           0x00000000      0x664
  *(.vectors)
  .vectors       0x00000000       0x54 D:/atmel/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
                 0x00000000                __vector_default
@@ -404,48 +402,46 @@ END GROUP
                 0x00000204       0x72 main.o
                 0x00000204                __vector_2
  .text.generator_of_obstacles
-                0x00000276       0x64 main.o
+                0x00000276       0xa2 main.o
                 0x00000276                generator_of_obstacles
- .text.lvl_2    0x000002da       0x64 main.o
-                0x000002da                lvl_2
- .text.Game     0x0000033e       0x7c main.o
-                0x0000033e                Game
- .text.main     0x000003ba       0x22 main.o
-                0x000003ba                main
- .text.RunGame  0x000003dc       0xaa main.o
-                0x000003dc                RunGame
+ .text.Game     0x00000318       0x7c main.o
+                0x00000318                Game
+ .text.main     0x00000394       0x22 main.o
+                0x00000394                main
+ .text.RunGame  0x000003b6       0xe0 main.o
+                0x000003b6                RunGame
  .text.__vector_7
-                0x00000486       0x4c main.o
-                0x00000486                __vector_7
+                0x00000496       0x4c main.o
+                0x00000496                __vector_7
  .text.avr-libc
-                0x000004d2       0xb8 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(rand.o)
-                0x00000564                rand_r
-                0x0000056a                rand
-                0x00000574                srand
+                0x000004e2       0xb8 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(rand.o)
+                0x00000574                rand_r
+                0x0000057a                rand
+                0x00000584                srand
  .text.libgcc.div
-                0x0000058a       0x2e d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodsi4.o)
-                0x0000058a                __divmodsi4
+                0x0000059a       0x2e d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodsi4.o)
+                0x0000059a                __divmodsi4
  .text.libgcc.div
-                0x000005b8       0x10 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_negsi2.o)
-                0x000005b8                __negsi2
+                0x000005c8       0x10 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_negsi2.o)
+                0x000005c8                __negsi2
  .text.libgcc.mul
-                0x000005c8       0x16 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_muluhisi3.o)
-                0x000005c8                __muluhisi3
+                0x000005d8       0x16 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_muluhisi3.o)
+                0x000005d8                __muluhisi3
  .text.libgcc.mul
-                0x000005de       0x10 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_mulshisi3.o)
-                0x000005de                __mulshisi3
-                0x000005e4                __mulohisi3
+                0x000005ee       0x10 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_mulshisi3.o)
+                0x000005ee                __mulshisi3
+                0x000005f4                __mulohisi3
  .text.libgcc.div
-                0x000005ee       0x44 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x000005ee                __udivmodsi4
+                0x000005fe       0x44 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x000005fe                __udivmodsi4
  .text.libgcc.mul
-                0x00000632       0x1e d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
-                0x00000632                __umulhisi3
-                0x00000650                . = ALIGN (0x2)
+                0x00000642       0x1e d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
+                0x00000642                __umulhisi3
+                0x00000660                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000650        0x0 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00000650                _exit
-                0x00000650                exit
+ .fini9         0x00000660        0x0 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00000660                _exit
+                0x00000660                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -464,50 +460,51 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000650        0x4 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000660        0x4 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000654                _etext = .
+                0x00000664                _etext = .
 
-.data           0x00800060       0x2c load address 0x00000654
+.data           0x00800060       0x32 load address 0x00000664
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x4 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(rand.o)
  *(.data*)
- .data.speed    0x00800064        0x2 main.o
-                0x00800064                speed
+ .data.f        0x00800064        0x2 main.o
+                0x00800064                f
+ .data.speed    0x00800066        0x2 main.o
+                0x00800066                speed
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x00800066       0x25 main.o
+                0x00800068       0x2a main.o
  *(.gnu.linkonce.r*)
-                0x0080008c                . = ALIGN (0x2)
- *fill*         0x0080008b        0x1 
-                0x0080008c                _edata = .
-                0x0080008c                PROVIDE (__data_end, .)
+                0x00800092                . = ALIGN (0x2)
+                0x00800092                _edata = .
+                0x00800092                PROVIDE (__data_end, .)
 
-.bss            0x0080008c       0x2e
-                0x0080008c                PROVIDE (__bss_start, .)
+.bss            0x00800092       0x2e
+                0x00800092                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.temp_counter
-                0x0080008c        0x2 main.o
-                0x0080008c                temp_counter
- .bss.counter   0x0080008e        0x2 main.o
-                0x0080008e                counter
+                0x00800092        0x2 main.o
+                0x00800092                temp_counter
+ .bss.counter   0x00800094        0x2 main.o
+                0x00800094                counter
  *(COMMON)
- COMMON         0x00800090       0x2a main.o
-                0x00800090                run_man_position
-                0x00800092                mass
-                0x008000ba                PROVIDE (__bss_end, .)
-                0x00000654                __data_load_start = LOADADDR (.data)
-                0x00000680                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800096       0x2a main.o
+                0x00800096                run_man_position
+                0x00800098                mass
+                0x008000c0                PROVIDE (__bss_end, .)
+                0x00000664                __data_load_start = LOADADDR (.data)
+                0x00000696                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008000ba        0x0
+.noinit         0x008000c0        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008000ba                _end = .
+                0x008000c0                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -573,42 +570,42 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x98
+.debug_aranges  0x00000000       0x88
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x98 main.o
+                0x00000000       0x88 main.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xf22
+.debug_info     0x00000000      0xf3c
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 D:/atmel/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_info    0x000004e6      0xa3c main.o
+ .debug_info    0x000004e6      0xa56 main.o
 
-.debug_abbrev   0x00000000      0x70d
+.debug_abbrev   0x00000000      0x72c
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 D:/atmel/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_abbrev  0x000004a3      0x26a main.o
+ .debug_abbrev  0x000004a3      0x289 main.o
 
-.debug_line     0x00000000      0x655
+.debug_line     0x00000000      0x601
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 D:/atmel/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_line    0x00000116      0x53f main.o
+ .debug_line    0x00000116      0x4eb main.o
 
-.debug_frame    0x00000000      0x250
+.debug_frame    0x00000000      0x21c
  *(.debug_frame)
- .debug_frame   0x00000000      0x250 main.o
+ .debug_frame   0x00000000      0x21c main.o
 
-.debug_str      0x00000000      0x41e
+.debug_str      0x00000000      0x40e
  *(.debug_str)
  .debug_str     0x00000000      0x196 D:/atmel/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_str     0x00000196      0x288 main.o
-                                0x2d7 (size before relaxing)
+ .debug_str     0x00000196      0x278 main.o
+                                0x2c7 (size before relaxing)
 
-.debug_loc      0x00000000      0x97a
+.debug_loc      0x00000000      0x915
  *(.debug_loc)
- .debug_loc     0x00000000      0x97a main.o
+ .debug_loc     0x00000000      0x915 main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -628,9 +625,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xb8
+.debug_ranges   0x00000000       0x78
  *(.debug_ranges)
- .debug_ranges  0x00000000       0xb8 main.o
+ .debug_ranges  0x00000000       0x78 main.o
 
 .debug_macro
  *(.debug_macro)

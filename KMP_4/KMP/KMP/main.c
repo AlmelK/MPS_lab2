@@ -94,16 +94,17 @@ int main(void)
 
 
 
-
+//--------------------------------------
 void kill_run_man(int x,int y)
-{
-
-		
-		LCDPrint(" ", y, x);
-		
+{		
+		LCDPrint(" ", y, x);	
 	
 }
+//--------------------------------------
+
 uint16_t play_delay = 500;
+
+//начало игры, генерация первых препятствий
 void Game(){
 	LCDSendCommand(0x01);
 	LCDPrint("RUN MAN GAME", 0, 2);
@@ -126,12 +127,19 @@ void Game(){
 		//mass[i].y=rand() % 2;
 		//LCDPrint("|", rand() % 2,mass[i].x);
 	//}
-	//generator_of_obstacles();
-	lvl_2();
+ // div 1024
+	 //speed = 500;
+	 //OCR1A = speed * 1;
+	 //TCNT1 = 0;
+ 	//TCCR1B |= (1 << CS12);
+	generator_of_obstacles();
 
 
 }
-//вверх
+
+
+//--------------------------------------
+//движение вверх
 ISR(INT0_vect) {
 
 	OCR1A = speed * 2;
@@ -143,8 +151,10 @@ ISR(INT0_vect) {
 		LCDPrint(".", run_man_position.y, run_man_position.x);
 	}
 }
+//--------------------------------------
 
-//вниз
+//--------------------------------------
+//движение вниз
 ISR(INT1_vect) {
 	
 	if(run_man_position.y==0)
@@ -155,8 +165,11 @@ ISR(INT1_vect) {
 	}
 
 }
+//--------------------------------------
 int pos_x=13;
 int pos_y=0;
+
+//--------------------------------------
 void endGame()
 {
 	cli();
@@ -164,16 +177,18 @@ void endGame()
 	LCDPrint("you lose", 0, 2);
 	TCCR1B = 0;
 }
-void chekPixel()
-{
-	
-}
+//-------------------------------------- 
+
+
 
 
 
 int counter=0;
 int temp_counter=0;
 int temp_counter_2=0;
+int f = 1;
+
+//--------------------------------------
 void displeyScrollOnCounter(int n){
 
 	for(int i=0;i<n;i++)
@@ -182,34 +197,26 @@ void displeyScrollOnCounter(int n){
 		
 	}
 }
-//////////////////////////////////
+//--------------------------------------
+
+//--------------------------------------
 void generator_of_obstacles(){
 		int temp_x=0;
 		int temp_y=0;
 		//speed = 500;
-		OCR1AH = 0b01111010;
-		OCR1AL = 0b00010010;
-		//TCNT1 = 0;
-		TCCR1B |= (1 << CS11) | (1 << CS10) ; // div 1024
-		for(int i=0;i<size_mas;i++)
-		{
-			temp_x+=3;
-			temp_y=rand() % 2;
-			mass[i].x=temp_x;
-			mass[i].y=temp_y;
-			LCDPrint("|", temp_y,temp_x);
+		if(f == 1){
+			
+			 speed = 500;
+			 OCR1A = speed * 1;
+			 TCNT1 = 0;
+			 TCCR1B |= (1 << CS12);
 		}
-		
-}
-
-void lvl_2(){
-			int temp_x=0;
-			int temp_y=0;
-			//speed = 500;
-			OCR1AH = 0b01111010;
-			OCR1AL = 0b00010010;
-			//TCNT1 = 0;
-			TCCR1B |= (1 << CS10); // div 256
+		else if (f==2){
+			speed = 500;
+			OCR1A = speed * 2;
+			TCNT1 = 0;
+			TCCR1B |= (1 << CS11);
+		}
 			for(int i=0;i<size_mas;i++)
 			{
 				temp_x+=3;
@@ -217,16 +224,24 @@ void lvl_2(){
 				mass[i].x=temp_x;
 				mass[i].y=temp_y;
 				LCDPrint("|", temp_y,temp_x);
-			}
+			}		
+		
 }
+//--------------------------------------
+
+//--------------------------------------
 void RunGame(){
 	
 	
 	if(counter==40)
 	{
+		f = 2;
 		LCDSendCommand(0x01);
+		LCDPrint("NEXT", 0, 2);
+		_delay_ms(1500);
+		LCDSendCommand(0x01);
+		
 		generator_of_obstacles();
-		//lvl_2();
 		run_man_position.x=1;
 		counter=0;
 		 
@@ -249,7 +264,7 @@ void RunGame(){
 
 	
 }
-
+//---------------------------------------
 
 ISR(TIMER1_COMPA_vect)
 {
