@@ -18,6 +18,7 @@
 
 
 #define size_mas 20
+
 typedef struct {
 	uint8_t x;
 	uint8_t y;
@@ -25,6 +26,7 @@ typedef struct {
 int speed=1;
 position mass[size_mas];
 position run_man_position;
+
 void LCDPrint(char *str, uint8_t row, uint8_t col) {
 	
 	if (row == 0) {
@@ -133,15 +135,12 @@ void Game(){
 	 //TCNT1 = 0;
  	//TCCR1B |= (1 << CS12);
 	generator_of_obstacles();
-
-
 }
 
 
 //--------------------------------------
 //движение вверх
 ISR(INT0_vect) {
-
 	OCR1A = speed * 2;
 	if(run_man_position.y==1)
 	{
@@ -155,15 +154,13 @@ ISR(INT0_vect) {
 
 //--------------------------------------
 //движение вниз
-ISR(INT1_vect) {
-	
+ISR(INT1_vect) {	
 	if(run_man_position.y==0)
 	{
 		kill_run_man(run_man_position.x,run_man_position.y);
 		run_man_position.y=1;
 		LCDPrint(".", run_man_position.y, run_man_position.x);
 	}
-
 }
 //--------------------------------------
 int pos_x=13;
@@ -174,7 +171,7 @@ void endGame()
 {
 	cli();
 	LCDSendCommand(0x01);
-	LCDPrint("you lose", 0, 2);
+	LCDPrint("You lose! :(", 0, 2);
 	TCCR1B = 0;
 }
 //-------------------------------------- 
@@ -193,8 +190,7 @@ void displeyScrollOnCounter(int n){
 
 	for(int i=0;i<n;i++)
 	{
-		LCDSendCommand(0x1C);
-		
+		LCDSendCommand(0x1C);		
 	}
 }
 //--------------------------------------
@@ -202,36 +198,31 @@ void displeyScrollOnCounter(int n){
 //--------------------------------------
 void generator_of_obstacles(){
 		int temp_x=0;
-		int temp_y=0;
-		//speed = 500;
-		if(f == 1){
-			
-			 speed = 500;
-			 OCR1A = speed * 1;
-			 TCNT1 = 0;
-			 TCCR1B |= (1 << CS12);
-		}
-		else if (f==2){
-			speed = 500;
-			OCR1A = speed * 2;
-			TCNT1 = 0;
-			TCCR1B |= (1 << CS11);
-		}
-			for(int i=0;i<size_mas;i++)
-			{
-				temp_x+=3;
-				temp_y=rand() % 2;
-				mass[i].x=temp_x;
-				mass[i].y=temp_y;
-				LCDPrint("|", temp_y,temp_x);
-			}		
+		int temp_y=0;			
+		speed = 500;
+		OCR1A = speed * 1;
+		TCNT1 = 0;
+		TCCR1B |= (1 << CS11) | (1<<CS10);
 		
+		//else if (f==2){
+			//speed = 500;
+			//OCR1A = speed * 2;
+			//TCNT1 = 0;
+			//TCCR1B |= (1 << CS11);
+		//}
+		for(int i=0;i<size_mas;i++)
+		{
+			temp_x+=3;
+			temp_y=rand() % 2;
+			mass[i].x=temp_x;
+			mass[i].y=temp_y;
+			LCDPrint("|", temp_y,temp_x);
+		}	
 }
 //--------------------------------------
 
 //--------------------------------------
 void RunGame(){
-	
 	
 	if(counter==40)
 	{
@@ -257,9 +248,7 @@ void RunGame(){
 
 	LCDPrint(".", run_man_position.y, run_man_position.x);
 	LCDSendCommand(0x18);
-	counter++;
-
-	
+	counter++;	
 }
 //---------------------------------------
 
