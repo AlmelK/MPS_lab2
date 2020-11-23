@@ -237,9 +237,6 @@ void RunGame(){
 	{
 		f = 2;
 		LCDSendCommand(0x01);
-		LCDPrint("NEXT", 0, 2);
-		_delay_ms(1500);
-		LCDSendCommand(0x01);
 		
 		generator_of_obstacles();
 		run_man_position.x=1;
@@ -252,7 +249,7 @@ void RunGame(){
 	{
 		if(run_man_position.y==mass[temp_counter].y)
 		{
-			//endGame();
+			endGame();
 		}
 		else
 		temp_counter++;
