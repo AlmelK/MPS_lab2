@@ -36,6 +36,7 @@ Discarded input sections
  .bss           0x00000000        0x0 main.o
  .text.LCDSendCommand
                 0x00000000        0xc main.o
+ .text.endGame  0x00000000       0x1e main.o
  .text.displeyScrollOnCounter
                 0x00000000       0x2e main.o
  .bss.temp_counter_2
@@ -304,7 +305,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x632
+.text           0x00000000      0x608
  *(.vectors)
  .vectors       0x00000000       0x54 D:/atmel/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
                 0x00000000                __vector_default
@@ -400,49 +401,47 @@ END GROUP
  .text.__vector_2
                 0x00000204       0x72 main.o
                 0x00000204                __vector_2
- .text.endGame  0x00000276       0x1e main.o
-                0x00000276                endGame
  .text.generator_of_obstacles
-                0x00000294       0x70 main.o
-                0x00000294                generator_of_obstacles
- .text.Game     0x00000304       0x7c main.o
-                0x00000304                Game
- .text.main     0x00000380       0x22 main.o
-                0x00000380                main
- .text.RunGame  0x000003a2       0xc2 main.o
-                0x000003a2                RunGame
+                0x00000276       0x70 main.o
+                0x00000276                generator_of_obstacles
+ .text.Game     0x000002e6       0x7c main.o
+                0x000002e6                Game
+ .text.main     0x00000362       0x22 main.o
+                0x00000362                main
+ .text.RunGame  0x00000384       0xb6 main.o
+                0x00000384                RunGame
  .text.__vector_7
-                0x00000464       0x4c main.o
-                0x00000464                __vector_7
+                0x0000043a       0x4c main.o
+                0x0000043a                __vector_7
  .text.avr-libc
-                0x000004b0       0xb8 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(rand.o)
-                0x00000542                rand_r
-                0x00000548                rand
-                0x00000552                srand
+                0x00000486       0xb8 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(rand.o)
+                0x00000518                rand_r
+                0x0000051e                rand
+                0x00000528                srand
  .text.libgcc.div
-                0x00000568       0x2e d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodsi4.o)
-                0x00000568                __divmodsi4
+                0x0000053e       0x2e d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodsi4.o)
+                0x0000053e                __divmodsi4
  .text.libgcc.div
-                0x00000596       0x10 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_negsi2.o)
-                0x00000596                __negsi2
+                0x0000056c       0x10 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_negsi2.o)
+                0x0000056c                __negsi2
  .text.libgcc.mul
-                0x000005a6       0x16 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_muluhisi3.o)
-                0x000005a6                __muluhisi3
+                0x0000057c       0x16 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_muluhisi3.o)
+                0x0000057c                __muluhisi3
  .text.libgcc.mul
-                0x000005bc       0x10 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_mulshisi3.o)
-                0x000005bc                __mulshisi3
-                0x000005c2                __mulohisi3
+                0x00000592       0x10 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_mulshisi3.o)
+                0x00000592                __mulshisi3
+                0x00000598                __mulohisi3
  .text.libgcc.div
-                0x000005cc       0x44 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x000005cc                __udivmodsi4
+                0x000005a2       0x44 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x000005a2                __udivmodsi4
  .text.libgcc.mul
-                0x00000610       0x1e d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
-                0x00000610                __umulhisi3
-                0x0000062e                . = ALIGN (0x2)
+                0x000005e6       0x1e d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
+                0x000005e6                __umulhisi3
+                0x00000604                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000062e        0x0 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x0000062e                _exit
-                0x0000062e                exit
+ .fini9         0x00000604        0x0 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00000604                _exit
+                0x00000604                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -461,11 +460,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000062e        0x4 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000604        0x4 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000632                _etext = .
+                0x00000608                _etext = .
 
-.data           0x00800060       0x32 load address 0x00000632
+.data           0x00800060       0x32 load address 0x00000608
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x4 d:/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(rand.o)
@@ -499,8 +498,8 @@ END GROUP
                 0x00800096                run_man_position
                 0x00800098                mass
                 0x008000c0                PROVIDE (__bss_end, .)
-                0x00000632                __data_load_start = LOADADDR (.data)
-                0x00000664                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000608                __data_load_start = LOADADDR (.data)
+                0x0000063a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x008000c0        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -580,20 +579,20 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xeb4
+.debug_info     0x00000000      0xeab
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 D:/atmel/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_info    0x000004e6      0x9ce main.o
+ .debug_info    0x000004e6      0x9c5 main.o
 
 .debug_abbrev   0x00000000      0x708
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 D:/atmel/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .debug_abbrev  0x000004a3      0x265 main.o
 
-.debug_line     0x00000000      0x5cd
+.debug_line     0x00000000      0x5c7
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 D:/atmel/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_line    0x00000116      0x4b7 main.o
+ .debug_line    0x00000116      0x4b1 main.o
 
 .debug_frame    0x00000000      0x21c
  *(.debug_frame)

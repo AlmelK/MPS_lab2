@@ -202,7 +202,7 @@ void generator_of_obstacles(){
 		speed = 500;
 		OCR1A = speed * 1;
 		TCNT1 = 0;
-		TCCR1B |= (1 << CS11) | (1<<CS10);
+		TCCR1B |= (1 << CS10);
 		
 		//else if (f==2){
 			//speed = 500;
@@ -240,7 +240,7 @@ void RunGame(){
 	{
 		if(run_man_position.y==mass[temp_counter].y)
 		{
-			endGame();
+			//endGame();
 		}
 		else
 		temp_counter++;

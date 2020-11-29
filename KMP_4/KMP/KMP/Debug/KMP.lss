@@ -3,31 +3,31 @@ KMP.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000632  00000000  00000000  00000094  2**1
+  0 .text         00000608  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000032  00800060  00000632  000006c6  2**0
+  1 .data         00000032  00800060  00000608  0000069c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          0000002e  00800092  00800092  000006f8  2**0
+  2 .bss          0000002e  00800092  00800092  000006ce  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000006f8  2**0
+  3 .comment      00000030  00000000  00000000  000006ce  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000728  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000700  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000088  00000000  00000000  00000764  2**0
+  5 .debug_aranges 00000088  00000000  00000000  0000073c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000eb4  00000000  00000000  000007ec  2**0
+  6 .debug_info   00000eab  00000000  00000000  000007c4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000708  00000000  00000000  000016a0  2**0
+  7 .debug_abbrev 00000708  00000000  00000000  0000166f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000005cd  00000000  00000000  00001da8  2**0
+  8 .debug_line   000005c7  00000000  00000000  00001d77  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  0000021c  00000000  00000000  00002378  2**2
+  9 .debug_frame  0000021c  00000000  00000000  00002340  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000040e  00000000  00000000  00002594  2**0
+ 10 .debug_str    0000040e  00000000  00000000  0000255c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000008c5  00000000  00000000  000029a2  2**0
+ 11 .debug_loc    000008c5  00000000  00000000  0000296a  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000090  00000000  00000000  00003267  2**0
+ 12 .debug_ranges 00000090  00000000  00000000  0000322f  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -40,7 +40,7 @@ Disassembly of section .text:
   10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
-  1c:	0c 94 32 02 	jmp	0x464	; 0x464 <__vector_7>
+  1c:	0c 94 1d 02 	jmp	0x43a	; 0x43a <__vector_7>
   20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
@@ -67,7 +67,7 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	e2 e3       	ldi	r30, 0x32	; 50
+  66:	e8 e0       	ldi	r30, 0x08	; 8
   68:	f6 e0       	ldi	r31, 0x06	; 6
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
@@ -89,8 +89,8 @@ Disassembly of section .text:
   80:	a0 3c       	cpi	r26, 0xC0	; 192
   82:	b2 07       	cpc	r27, r18
   84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
-  86:	0e 94 c0 01 	call	0x380	; 0x380 <main>
-  8a:	0c 94 17 03 	jmp	0x62e	; 0x62e <_exit>
+  86:	0e 94 b1 01 	call	0x362	; 0x362 <main>
+  8a:	0c 94 02 03 	jmp	0x604	; 0x604 <_exit>
 
 0000008e <__bad_interrupt>:
   8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -339,647 +339,626 @@ Disassembly of section .text:
  272:	1f 90       	pop	r1
  274:	18 95       	reti
 
-00000276 <endGame>:
- 276:	f8 94       	cli
- 278:	8b b3       	in	r24, 0x1b	; 27
- 27a:	8f 7e       	andi	r24, 0xEF	; 239
- 27c:	8b bb       	out	0x1b, r24	; 27
- 27e:	81 e0       	ldi	r24, 0x01	; 1
- 280:	0e 94 49 00 	call	0x92	; 0x92 <LCDWriteByte>
- 284:	42 e0       	ldi	r20, 0x02	; 2
- 286:	60 e0       	ldi	r22, 0x00	; 0
- 288:	8c e6       	ldi	r24, 0x6C	; 108
- 28a:	90 e0       	ldi	r25, 0x00	; 0
- 28c:	0e 94 7e 00 	call	0xfc	; 0xfc <LCDPrint>
- 290:	1e bc       	out	0x2e, r1	; 46
- 292:	08 95       	ret
-
-00000294 <generator_of_obstacles>:
+00000276 <generator_of_obstacles>:
 //--------------------------------------
 
 //--------------------------------------
 void generator_of_obstacles(){
- 294:	0f 93       	push	r16
- 296:	1f 93       	push	r17
- 298:	cf 93       	push	r28
- 29a:	df 93       	push	r29
+ 276:	0f 93       	push	r16
+ 278:	1f 93       	push	r17
+ 27a:	cf 93       	push	r28
+ 27c:	df 93       	push	r29
 		int temp_x=0;
 		int temp_y=0;			
 		speed = 500;
- 29c:	84 ef       	ldi	r24, 0xF4	; 244
- 29e:	91 e0       	ldi	r25, 0x01	; 1
- 2a0:	90 93 67 00 	sts	0x0067, r25	; 0x800067 <speed+0x1>
- 2a4:	80 93 66 00 	sts	0x0066, r24	; 0x800066 <speed>
+ 27e:	84 ef       	ldi	r24, 0xF4	; 244
+ 280:	91 e0       	ldi	r25, 0x01	; 1
+ 282:	90 93 67 00 	sts	0x0067, r25	; 0x800067 <speed+0x1>
+ 286:	80 93 66 00 	sts	0x0066, r24	; 0x800066 <speed>
 		OCR1A = speed * 1;
- 2a8:	9b bd       	out	0x2b, r25	; 43
- 2aa:	8a bd       	out	0x2a, r24	; 42
+ 28a:	9b bd       	out	0x2b, r25	; 43
+ 28c:	8a bd       	out	0x2a, r24	; 42
 		TCNT1 = 0;
- 2ac:	1d bc       	out	0x2d, r1	; 45
- 2ae:	1c bc       	out	0x2c, r1	; 44
-		TCCR1B |= (1 << CS11) | (1<<CS10);
- 2b0:	8e b5       	in	r24, 0x2e	; 46
- 2b2:	83 60       	ori	r24, 0x03	; 3
- 2b4:	8e bd       	out	0x2e, r24	; 46
+ 28e:	1d bc       	out	0x2d, r1	; 45
+ 290:	1c bc       	out	0x2c, r1	; 44
+		TCCR1B |= (1 << CS10);
+ 292:	8e b5       	in	r24, 0x2e	; 46
+ 294:	81 60       	ori	r24, 0x01	; 1
+ 296:	8e bd       	out	0x2e, r24	; 46
 			//speed = 500;
 			//OCR1A = speed * 2;
 			//TCNT1 = 0;
 			//TCCR1B |= (1 << CS11);
 		//}
 		for(int i=0;i<size_mas;i++)
- 2b6:	c0 e0       	ldi	r28, 0x00	; 0
- 2b8:	d0 e0       	ldi	r29, 0x00	; 0
+ 298:	c0 e0       	ldi	r28, 0x00	; 0
+ 29a:	d0 e0       	ldi	r29, 0x00	; 0
 }
 //--------------------------------------
 
 //--------------------------------------
 void generator_of_obstacles(){
 		int temp_x=0;
- 2ba:	00 e0       	ldi	r16, 0x00	; 0
- 2bc:	10 e0       	ldi	r17, 0x00	; 0
+ 29c:	00 e0       	ldi	r16, 0x00	; 0
+ 29e:	10 e0       	ldi	r17, 0x00	; 0
 			//speed = 500;
 			//OCR1A = speed * 2;
 			//TCNT1 = 0;
 			//TCCR1B |= (1 << CS11);
 		//}
 		for(int i=0;i<size_mas;i++)
- 2be:	1a c0       	rjmp	.+52     	; 0x2f4 <generator_of_obstacles+0x60>
+ 2a0:	1a c0       	rjmp	.+52     	; 0x2d6 <generator_of_obstacles+0x60>
 		{
 			temp_x+=3;
- 2c0:	0d 5f       	subi	r16, 0xFD	; 253
- 2c2:	1f 4f       	sbci	r17, 0xFF	; 255
+ 2a2:	0d 5f       	subi	r16, 0xFD	; 253
+ 2a4:	1f 4f       	sbci	r17, 0xFF	; 255
 			temp_y=rand() % 2;
- 2c4:	0e 94 a4 02 	call	0x548	; 0x548 <rand>
- 2c8:	81 70       	andi	r24, 0x01	; 1
- 2ca:	90 78       	andi	r25, 0x80	; 128
- 2cc:	99 23       	and	r25, r25
- 2ce:	24 f4       	brge	.+8      	; 0x2d8 <generator_of_obstacles+0x44>
- 2d0:	01 97       	sbiw	r24, 0x01	; 1
- 2d2:	8e 6f       	ori	r24, 0xFE	; 254
- 2d4:	9f 6f       	ori	r25, 0xFF	; 255
- 2d6:	01 96       	adiw	r24, 0x01	; 1
+ 2a6:	0e 94 8f 02 	call	0x51e	; 0x51e <rand>
+ 2aa:	81 70       	andi	r24, 0x01	; 1
+ 2ac:	90 78       	andi	r25, 0x80	; 128
+ 2ae:	99 23       	and	r25, r25
+ 2b0:	24 f4       	brge	.+8      	; 0x2ba <generator_of_obstacles+0x44>
+ 2b2:	01 97       	sbiw	r24, 0x01	; 1
+ 2b4:	8e 6f       	ori	r24, 0xFE	; 254
+ 2b6:	9f 6f       	ori	r25, 0xFF	; 255
+ 2b8:	01 96       	adiw	r24, 0x01	; 1
 			mass[i].x=temp_x;
- 2d8:	fe 01       	movw	r30, r28
- 2da:	ee 0f       	add	r30, r30
- 2dc:	ff 1f       	adc	r31, r31
- 2de:	e8 56       	subi	r30, 0x68	; 104
- 2e0:	ff 4f       	sbci	r31, 0xFF	; 255
- 2e2:	00 83       	st	Z, r16
+ 2ba:	fe 01       	movw	r30, r28
+ 2bc:	ee 0f       	add	r30, r30
+ 2be:	ff 1f       	adc	r31, r31
+ 2c0:	e8 56       	subi	r30, 0x68	; 104
+ 2c2:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2c4:	00 83       	st	Z, r16
 			mass[i].y=temp_y;
- 2e4:	81 83       	std	Z+1, r24	; 0x01
+ 2c6:	81 83       	std	Z+1, r24	; 0x01
 			LCDPrint("|", temp_y,temp_x);
- 2e6:	40 2f       	mov	r20, r16
- 2e8:	68 2f       	mov	r22, r24
- 2ea:	89 e7       	ldi	r24, 0x79	; 121
- 2ec:	90 e0       	ldi	r25, 0x00	; 0
- 2ee:	0e 94 7e 00 	call	0xfc	; 0xfc <LCDPrint>
+ 2c8:	40 2f       	mov	r20, r16
+ 2ca:	68 2f       	mov	r22, r24
+ 2cc:	89 e7       	ldi	r24, 0x79	; 121
+ 2ce:	90 e0       	ldi	r25, 0x00	; 0
+ 2d0:	0e 94 7e 00 	call	0xfc	; 0xfc <LCDPrint>
 			//speed = 500;
 			//OCR1A = speed * 2;
 			//TCNT1 = 0;
 			//TCCR1B |= (1 << CS11);
 		//}
 		for(int i=0;i<size_mas;i++)
- 2f2:	21 96       	adiw	r28, 0x01	; 1
- 2f4:	c4 31       	cpi	r28, 0x14	; 20
- 2f6:	d1 05       	cpc	r29, r1
- 2f8:	1c f3       	brlt	.-58     	; 0x2c0 <generator_of_obstacles+0x2c>
+ 2d4:	21 96       	adiw	r28, 0x01	; 1
+ 2d6:	c4 31       	cpi	r28, 0x14	; 20
+ 2d8:	d1 05       	cpc	r29, r1
+ 2da:	1c f3       	brlt	.-58     	; 0x2a2 <generator_of_obstacles+0x2c>
 			temp_y=rand() % 2;
 			mass[i].x=temp_x;
 			mass[i].y=temp_y;
 			LCDPrint("|", temp_y,temp_x);
 		}	
 }
- 2fa:	df 91       	pop	r29
- 2fc:	cf 91       	pop	r28
- 2fe:	1f 91       	pop	r17
- 300:	0f 91       	pop	r16
- 302:	08 95       	ret
+ 2dc:	df 91       	pop	r29
+ 2de:	cf 91       	pop	r28
+ 2e0:	1f 91       	pop	r17
+ 2e2:	0f 91       	pop	r16
+ 2e4:	08 95       	ret
 
-00000304 <Game>:
+000002e6 <Game>:
 	LCD_PORT &= ~(1 << EN);
 	_delay_ms(40);
 }
 
 inline void LCDSendCommand(uint8_t cmd) {
 	LCD_PORT &= ~(1 << RS);
- 304:	8b b3       	in	r24, 0x1b	; 27
- 306:	8f 7e       	andi	r24, 0xEF	; 239
- 308:	8b bb       	out	0x1b, r24	; 27
+ 2e6:	8b b3       	in	r24, 0x1b	; 27
+ 2e8:	8f 7e       	andi	r24, 0xEF	; 239
+ 2ea:	8b bb       	out	0x1b, r24	; 27
 	LCDWriteByte(cmd);
- 30a:	81 e0       	ldi	r24, 0x01	; 1
- 30c:	0e 94 49 00 	call	0x92	; 0x92 <LCDWriteByte>
+ 2ec:	81 e0       	ldi	r24, 0x01	; 1
+ 2ee:	0e 94 49 00 	call	0x92	; 0x92 <LCDWriteByte>
 uint16_t play_delay = 500;
 
 //начало игры, генерация первых препятствий
 void Game(){
 	LCDSendCommand(0x01);
 	LCDPrint("RUN MAN GAME", 0, 2);
- 310:	42 e0       	ldi	r20, 0x02	; 2
- 312:	60 e0       	ldi	r22, 0x00	; 0
- 314:	8b e7       	ldi	r24, 0x7B	; 123
- 316:	90 e0       	ldi	r25, 0x00	; 0
- 318:	0e 94 7e 00 	call	0xfc	; 0xfc <LCDPrint>
+ 2f2:	42 e0       	ldi	r20, 0x02	; 2
+ 2f4:	60 e0       	ldi	r22, 0x00	; 0
+ 2f6:	8b e7       	ldi	r24, 0x7B	; 123
+ 2f8:	90 e0       	ldi	r25, 0x00	; 0
+ 2fa:	0e 94 7e 00 	call	0xfc	; 0xfc <LCDPrint>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 31c:	2f e3       	ldi	r18, 0x3F	; 63
- 31e:	8d e0       	ldi	r24, 0x0D	; 13
- 320:	93 e0       	ldi	r25, 0x03	; 3
- 322:	21 50       	subi	r18, 0x01	; 1
- 324:	80 40       	sbci	r24, 0x00	; 0
- 326:	90 40       	sbci	r25, 0x00	; 0
- 328:	e1 f7       	brne	.-8      	; 0x322 <Game+0x1e>
- 32a:	00 c0       	rjmp	.+0      	; 0x32c <Game+0x28>
- 32c:	00 00       	nop
+ 2fe:	2f e3       	ldi	r18, 0x3F	; 63
+ 300:	8d e0       	ldi	r24, 0x0D	; 13
+ 302:	93 e0       	ldi	r25, 0x03	; 3
+ 304:	21 50       	subi	r18, 0x01	; 1
+ 306:	80 40       	sbci	r24, 0x00	; 0
+ 308:	90 40       	sbci	r25, 0x00	; 0
+ 30a:	e1 f7       	brne	.-8      	; 0x304 <Game+0x1e>
+ 30c:	00 c0       	rjmp	.+0      	; 0x30e <Game+0x28>
+ 30e:	00 00       	nop
 	LCD_PORT &= ~(1 << EN);
 	_delay_ms(40);
 }
 
 inline void LCDSendCommand(uint8_t cmd) {
 	LCD_PORT &= ~(1 << RS);
- 32e:	8b b3       	in	r24, 0x1b	; 27
- 330:	8f 7e       	andi	r24, 0xEF	; 239
- 332:	8b bb       	out	0x1b, r24	; 27
+ 310:	8b b3       	in	r24, 0x1b	; 27
+ 312:	8f 7e       	andi	r24, 0xEF	; 239
+ 314:	8b bb       	out	0x1b, r24	; 27
 	LCDWriteByte(cmd);
- 334:	81 e0       	ldi	r24, 0x01	; 1
- 336:	0e 94 49 00 	call	0x92	; 0x92 <LCDWriteByte>
+ 316:	81 e0       	ldi	r24, 0x01	; 1
+ 318:	0e 94 49 00 	call	0x92	; 0x92 <LCDWriteByte>
 void Game(){
 	LCDSendCommand(0x01);
 	LCDPrint("RUN MAN GAME", 0, 2);
 	_delay_ms(1000);
 	LCDSendCommand(0x01);
 	LCDPrint("LETS GO!", 0, 4);
- 33a:	44 e0       	ldi	r20, 0x04	; 4
- 33c:	60 e0       	ldi	r22, 0x00	; 0
- 33e:	88 e8       	ldi	r24, 0x88	; 136
- 340:	90 e0       	ldi	r25, 0x00	; 0
- 342:	0e 94 7e 00 	call	0xfc	; 0xfc <LCDPrint>
- 346:	2f e3       	ldi	r18, 0x3F	; 63
- 348:	8d e0       	ldi	r24, 0x0D	; 13
- 34a:	93 e0       	ldi	r25, 0x03	; 3
- 34c:	21 50       	subi	r18, 0x01	; 1
- 34e:	80 40       	sbci	r24, 0x00	; 0
- 350:	90 40       	sbci	r25, 0x00	; 0
- 352:	e1 f7       	brne	.-8      	; 0x34c <Game+0x48>
- 354:	00 c0       	rjmp	.+0      	; 0x356 <Game+0x52>
- 356:	00 00       	nop
+ 31c:	44 e0       	ldi	r20, 0x04	; 4
+ 31e:	60 e0       	ldi	r22, 0x00	; 0
+ 320:	88 e8       	ldi	r24, 0x88	; 136
+ 322:	90 e0       	ldi	r25, 0x00	; 0
+ 324:	0e 94 7e 00 	call	0xfc	; 0xfc <LCDPrint>
+ 328:	2f e3       	ldi	r18, 0x3F	; 63
+ 32a:	8d e0       	ldi	r24, 0x0D	; 13
+ 32c:	93 e0       	ldi	r25, 0x03	; 3
+ 32e:	21 50       	subi	r18, 0x01	; 1
+ 330:	80 40       	sbci	r24, 0x00	; 0
+ 332:	90 40       	sbci	r25, 0x00	; 0
+ 334:	e1 f7       	brne	.-8      	; 0x32e <Game+0x48>
+ 336:	00 c0       	rjmp	.+0      	; 0x338 <Game+0x52>
+ 338:	00 00       	nop
 	LCD_PORT &= ~(1 << EN);
 	_delay_ms(40);
 }
 
 inline void LCDSendCommand(uint8_t cmd) {
 	LCD_PORT &= ~(1 << RS);
- 358:	8b b3       	in	r24, 0x1b	; 27
- 35a:	8f 7e       	andi	r24, 0xEF	; 239
- 35c:	8b bb       	out	0x1b, r24	; 27
+ 33a:	8b b3       	in	r24, 0x1b	; 27
+ 33c:	8f 7e       	andi	r24, 0xEF	; 239
+ 33e:	8b bb       	out	0x1b, r24	; 27
 	LCDWriteByte(cmd);
- 35e:	81 e0       	ldi	r24, 0x01	; 1
- 360:	0e 94 49 00 	call	0x92	; 0x92 <LCDWriteByte>
+ 340:	81 e0       	ldi	r24, 0x01	; 1
+ 342:	0e 94 49 00 	call	0x92	; 0x92 <LCDWriteByte>
 	LCDSendCommand(0x01);
 	LCDPrint("LETS GO!", 0, 4);
 	_delay_ms(1000);
 	LCDSendCommand(0x01);
 	
 	run_man_position.x=1;
- 364:	e6 e9       	ldi	r30, 0x96	; 150
- 366:	f0 e0       	ldi	r31, 0x00	; 0
- 368:	81 e0       	ldi	r24, 0x01	; 1
- 36a:	80 83       	st	Z, r24
+ 346:	e6 e9       	ldi	r30, 0x96	; 150
+ 348:	f0 e0       	ldi	r31, 0x00	; 0
+ 34a:	81 e0       	ldi	r24, 0x01	; 1
+ 34c:	80 83       	st	Z, r24
 	run_man_position.y=1;
- 36c:	81 83       	std	Z+1, r24	; 0x01
+ 34e:	81 83       	std	Z+1, r24	; 0x01
 	LCDPrint(".", run_man_position.x, run_man_position.y);
- 36e:	41 e0       	ldi	r20, 0x01	; 1
- 370:	61 e0       	ldi	r22, 0x01	; 1
- 372:	8a e6       	ldi	r24, 0x6A	; 106
- 374:	90 e0       	ldi	r25, 0x00	; 0
- 376:	0e 94 7e 00 	call	0xfc	; 0xfc <LCDPrint>
+ 350:	41 e0       	ldi	r20, 0x01	; 1
+ 352:	61 e0       	ldi	r22, 0x01	; 1
+ 354:	8a e6       	ldi	r24, 0x6A	; 106
+ 356:	90 e0       	ldi	r25, 0x00	; 0
+ 358:	0e 94 7e 00 	call	0xfc	; 0xfc <LCDPrint>
  // div 1024
 	 //speed = 500;
 	 //OCR1A = speed * 1;
 	 //TCNT1 = 0;
  	//TCCR1B |= (1 << CS12);
 	generator_of_obstacles();
- 37a:	0e 94 4a 01 	call	0x294	; 0x294 <generator_of_obstacles>
- 37e:	08 95       	ret
+ 35c:	0e 94 3b 01 	call	0x276	; 0x276 <generator_of_obstacles>
+ 360:	08 95       	ret
 
-00000380 <main>:
+00000362 <main>:
 }
 
 
 int main(void)
 {
     LCDInit();
- 380:	0e 94 a0 00 	call	0x140	; 0x140 <LCDInit>
+ 362:	0e 94 a0 00 	call	0x140	; 0x140 <LCDInit>
 
 	MCUCR = (0 << ISC01) | (1 << ISC00) | (0 << ISC11) | (1 << ISC10);
- 384:	85 e0       	ldi	r24, 0x05	; 5
- 386:	85 bf       	out	0x35, r24	; 53
+ 366:	85 e0       	ldi	r24, 0x05	; 5
+ 368:	85 bf       	out	0x35, r24	; 53
 	GICR |= (1 << INT0) | (1 << INT1);
- 388:	8b b7       	in	r24, 0x3b	; 59
- 38a:	80 6c       	ori	r24, 0xC0	; 192
- 38c:	8b bf       	out	0x3b, r24	; 59
+ 36a:	8b b7       	in	r24, 0x3b	; 59
+ 36c:	80 6c       	ori	r24, 0xC0	; 192
+ 36e:	8b bf       	out	0x3b, r24	; 59
 	TCCR1B |= (1 << WGM12);
- 38e:	8e b5       	in	r24, 0x2e	; 46
- 390:	88 60       	ori	r24, 0x08	; 8
- 392:	8e bd       	out	0x2e, r24	; 46
+ 370:	8e b5       	in	r24, 0x2e	; 46
+ 372:	88 60       	ori	r24, 0x08	; 8
+ 374:	8e bd       	out	0x2e, r24	; 46
 	TIMSK |= (1 << OCIE1A);
- 394:	89 b7       	in	r24, 0x39	; 57
- 396:	80 61       	ori	r24, 0x10	; 16
- 398:	89 bf       	out	0x39, r24	; 57
+ 376:	89 b7       	in	r24, 0x39	; 57
+ 378:	80 61       	ori	r24, 0x10	; 16
+ 37a:	89 bf       	out	0x39, r24	; 57
 
 	Game();
- 39a:	0e 94 82 01 	call	0x304	; 0x304 <Game>
+ 37c:	0e 94 73 01 	call	0x2e6	; 0x2e6 <Game>
 	sei();
- 39e:	78 94       	sei
- 3a0:	ff cf       	rjmp	.-2      	; 0x3a0 <main+0x20>
+ 380:	78 94       	sei
+ 382:	ff cf       	rjmp	.-2      	; 0x382 <main+0x20>
 
-000003a2 <RunGame>:
+00000384 <RunGame>:
 		}	
 }
 //--------------------------------------
 
 //--------------------------------------
 void RunGame(){
- 3a2:	cf 93       	push	r28
- 3a4:	df 93       	push	r29
+ 384:	cf 93       	push	r28
+ 386:	df 93       	push	r29
 	
 	if(counter==40)
- 3a6:	80 91 94 00 	lds	r24, 0x0094	; 0x800094 <counter>
- 3aa:	90 91 95 00 	lds	r25, 0x0095	; 0x800095 <counter+0x1>
- 3ae:	88 97       	sbiw	r24, 0x28	; 40
- 3b0:	a9 f4       	brne	.+42     	; 0x3dc <RunGame+0x3a>
+ 388:	80 91 94 00 	lds	r24, 0x0094	; 0x800094 <counter>
+ 38c:	90 91 95 00 	lds	r25, 0x0095	; 0x800095 <counter+0x1>
+ 390:	88 97       	sbiw	r24, 0x28	; 40
+ 392:	a9 f4       	brne	.+42     	; 0x3be <RunGame+0x3a>
 	{
 		f = 2;
- 3b2:	82 e0       	ldi	r24, 0x02	; 2
- 3b4:	90 e0       	ldi	r25, 0x00	; 0
- 3b6:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <f+0x1>
- 3ba:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <f>
+ 394:	82 e0       	ldi	r24, 0x02	; 2
+ 396:	90 e0       	ldi	r25, 0x00	; 0
+ 398:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <f+0x1>
+ 39c:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <f>
 	LCD_PORT &= ~(1 << EN);
 	_delay_ms(40);
 }
 
 inline void LCDSendCommand(uint8_t cmd) {
 	LCD_PORT &= ~(1 << RS);
- 3be:	8b b3       	in	r24, 0x1b	; 27
- 3c0:	8f 7e       	andi	r24, 0xEF	; 239
- 3c2:	8b bb       	out	0x1b, r24	; 27
+ 3a0:	8b b3       	in	r24, 0x1b	; 27
+ 3a2:	8f 7e       	andi	r24, 0xEF	; 239
+ 3a4:	8b bb       	out	0x1b, r24	; 27
 	LCDWriteByte(cmd);
- 3c4:	81 e0       	ldi	r24, 0x01	; 1
- 3c6:	0e 94 49 00 	call	0x92	; 0x92 <LCDWriteByte>
+ 3a6:	81 e0       	ldi	r24, 0x01	; 1
+ 3a8:	0e 94 49 00 	call	0x92	; 0x92 <LCDWriteByte>
 	if(counter==40)
 	{
 		f = 2;
 		LCDSendCommand(0x01);
 		
 		generator_of_obstacles();
- 3ca:	0e 94 4a 01 	call	0x294	; 0x294 <generator_of_obstacles>
+ 3ac:	0e 94 3b 01 	call	0x276	; 0x276 <generator_of_obstacles>
 		run_man_position.x=1;
- 3ce:	81 e0       	ldi	r24, 0x01	; 1
- 3d0:	80 93 96 00 	sts	0x0096, r24	; 0x800096 <run_man_position>
+ 3b0:	81 e0       	ldi	r24, 0x01	; 1
+ 3b2:	80 93 96 00 	sts	0x0096, r24	; 0x800096 <run_man_position>
 		counter=0;
- 3d4:	10 92 95 00 	sts	0x0095, r1	; 0x800095 <counter+0x1>
- 3d8:	10 92 94 00 	sts	0x0094, r1	; 0x800094 <counter>
+ 3b6:	10 92 95 00 	sts	0x0095, r1	; 0x800095 <counter+0x1>
+ 3ba:	10 92 94 00 	sts	0x0094, r1	; 0x800094 <counter>
 		 
 	}
 	kill_run_man(run_man_position.x,run_man_position.y);
- 3dc:	c6 e9       	ldi	r28, 0x96	; 150
- 3de:	d0 e0       	ldi	r29, 0x00	; 0
- 3e0:	69 81       	ldd	r22, Y+1	; 0x01
- 3e2:	88 81       	ld	r24, Y
- 3e4:	70 e0       	ldi	r23, 0x00	; 0
- 3e6:	90 e0       	ldi	r25, 0x00	; 0
- 3e8:	0e 94 bc 00 	call	0x178	; 0x178 <kill_run_man>
+ 3be:	c6 e9       	ldi	r28, 0x96	; 150
+ 3c0:	d0 e0       	ldi	r29, 0x00	; 0
+ 3c2:	69 81       	ldd	r22, Y+1	; 0x01
+ 3c4:	88 81       	ld	r24, Y
+ 3c6:	70 e0       	ldi	r23, 0x00	; 0
+ 3c8:	90 e0       	ldi	r25, 0x00	; 0
+ 3ca:	0e 94 bc 00 	call	0x178	; 0x178 <kill_run_man>
 	run_man_position.x++;
- 3ec:	88 81       	ld	r24, Y
- 3ee:	8f 5f       	subi	r24, 0xFF	; 255
- 3f0:	88 83       	st	Y, r24
+ 3ce:	48 81       	ld	r20, Y
+ 3d0:	4f 5f       	subi	r20, 0xFF	; 255
+ 3d2:	48 83       	st	Y, r20
 	if(run_man_position.x==mass[temp_counter].x)
- 3f2:	20 91 92 00 	lds	r18, 0x0092	; 0x800092 <__data_end>
- 3f6:	30 91 93 00 	lds	r19, 0x0093	; 0x800093 <__data_end+0x1>
- 3fa:	f9 01       	movw	r30, r18
- 3fc:	ee 0f       	add	r30, r30
- 3fe:	ff 1f       	adc	r31, r31
- 400:	e8 56       	subi	r30, 0x68	; 104
- 402:	ff 4f       	sbci	r31, 0xFF	; 255
- 404:	90 81       	ld	r25, Z
- 406:	89 13       	cpse	r24, r25
- 408:	13 c0       	rjmp	.+38     	; 0x430 <__EEPROM_REGION_LENGTH__+0x30>
+ 3d4:	80 91 92 00 	lds	r24, 0x0092	; 0x800092 <__data_end>
+ 3d8:	90 91 93 00 	lds	r25, 0x0093	; 0x800093 <__data_end+0x1>
+ 3dc:	fc 01       	movw	r30, r24
+ 3de:	ee 0f       	add	r30, r30
+ 3e0:	ff 1f       	adc	r31, r31
+ 3e2:	e8 56       	subi	r30, 0x68	; 104
+ 3e4:	ff 4f       	sbci	r31, 0xFF	; 255
+ 3e6:	20 81       	ld	r18, Z
+ 3e8:	42 13       	cpse	r20, r18
+ 3ea:	0f c0       	rjmp	.+30     	; 0x40a <__EEPROM_REGION_LENGTH__+0xa>
 	{
 		if(run_man_position.y==mass[temp_counter].y)
- 40a:	90 91 97 00 	lds	r25, 0x0097	; 0x800097 <run_man_position+0x1>
- 40e:	f9 01       	movw	r30, r18
- 410:	ee 0f       	add	r30, r30
- 412:	ff 1f       	adc	r31, r31
- 414:	e8 56       	subi	r30, 0x68	; 104
- 416:	ff 4f       	sbci	r31, 0xFF	; 255
- 418:	81 81       	ldd	r24, Z+1	; 0x01
- 41a:	98 13       	cpse	r25, r24
- 41c:	03 c0       	rjmp	.+6      	; 0x424 <__EEPROM_REGION_LENGTH__+0x24>
+ 3ec:	30 91 97 00 	lds	r19, 0x0097	; 0x800097 <run_man_position+0x1>
+ 3f0:	fc 01       	movw	r30, r24
+ 3f2:	ee 0f       	add	r30, r30
+ 3f4:	ff 1f       	adc	r31, r31
+ 3f6:	e8 56       	subi	r30, 0x68	; 104
+ 3f8:	ff 4f       	sbci	r31, 0xFF	; 255
+ 3fa:	21 81       	ldd	r18, Z+1	; 0x01
+ 3fc:	32 17       	cp	r19, r18
+ 3fe:	29 f0       	breq	.+10     	; 0x40a <__EEPROM_REGION_LENGTH__+0xa>
 		{
-			endGame();
- 41e:	0e 94 3b 01 	call	0x276	; 0x276 <endGame>
- 422:	06 c0       	rjmp	.+12     	; 0x430 <__EEPROM_REGION_LENGTH__+0x30>
+			//endGame();
 		}
 		else
 		temp_counter++;
- 424:	2f 5f       	subi	r18, 0xFF	; 255
- 426:	3f 4f       	sbci	r19, 0xFF	; 255
- 428:	30 93 93 00 	sts	0x0093, r19	; 0x800093 <__data_end+0x1>
- 42c:	20 93 92 00 	sts	0x0092, r18	; 0x800092 <__data_end>
+ 400:	01 96       	adiw	r24, 0x01	; 1
+ 402:	90 93 93 00 	sts	0x0093, r25	; 0x800093 <__data_end+0x1>
+ 406:	80 93 92 00 	sts	0x0092, r24	; 0x800092 <__data_end>
 	}
 
 	LCDPrint(".", run_man_position.y, run_man_position.x);
- 430:	e6 e9       	ldi	r30, 0x96	; 150
- 432:	f0 e0       	ldi	r31, 0x00	; 0
- 434:	40 81       	ld	r20, Z
- 436:	61 81       	ldd	r22, Z+1	; 0x01
- 438:	8a e6       	ldi	r24, 0x6A	; 106
- 43a:	90 e0       	ldi	r25, 0x00	; 0
- 43c:	0e 94 7e 00 	call	0xfc	; 0xfc <LCDPrint>
+ 40a:	60 91 97 00 	lds	r22, 0x0097	; 0x800097 <run_man_position+0x1>
+ 40e:	8a e6       	ldi	r24, 0x6A	; 106
+ 410:	90 e0       	ldi	r25, 0x00	; 0
+ 412:	0e 94 7e 00 	call	0xfc	; 0xfc <LCDPrint>
 	LCD_PORT &= ~(1 << EN);
 	_delay_ms(40);
 }
 
 inline void LCDSendCommand(uint8_t cmd) {
 	LCD_PORT &= ~(1 << RS);
- 440:	8b b3       	in	r24, 0x1b	; 27
- 442:	8f 7e       	andi	r24, 0xEF	; 239
- 444:	8b bb       	out	0x1b, r24	; 27
+ 416:	8b b3       	in	r24, 0x1b	; 27
+ 418:	8f 7e       	andi	r24, 0xEF	; 239
+ 41a:	8b bb       	out	0x1b, r24	; 27
 	LCDWriteByte(cmd);
- 446:	88 e1       	ldi	r24, 0x18	; 24
- 448:	0e 94 49 00 	call	0x92	; 0x92 <LCDWriteByte>
+ 41c:	88 e1       	ldi	r24, 0x18	; 24
+ 41e:	0e 94 49 00 	call	0x92	; 0x92 <LCDWriteByte>
 		temp_counter++;
 	}
 
 	LCDPrint(".", run_man_position.y, run_man_position.x);
 	LCDSendCommand(0x18);
 	counter++;	
- 44c:	80 91 94 00 	lds	r24, 0x0094	; 0x800094 <counter>
- 450:	90 91 95 00 	lds	r25, 0x0095	; 0x800095 <counter+0x1>
- 454:	01 96       	adiw	r24, 0x01	; 1
- 456:	90 93 95 00 	sts	0x0095, r25	; 0x800095 <counter+0x1>
- 45a:	80 93 94 00 	sts	0x0094, r24	; 0x800094 <counter>
+ 422:	80 91 94 00 	lds	r24, 0x0094	; 0x800094 <counter>
+ 426:	90 91 95 00 	lds	r25, 0x0095	; 0x800095 <counter+0x1>
+ 42a:	01 96       	adiw	r24, 0x01	; 1
+ 42c:	90 93 95 00 	sts	0x0095, r25	; 0x800095 <counter+0x1>
+ 430:	80 93 94 00 	sts	0x0094, r24	; 0x800094 <counter>
 }
- 45e:	df 91       	pop	r29
- 460:	cf 91       	pop	r28
- 462:	08 95       	ret
+ 434:	df 91       	pop	r29
+ 436:	cf 91       	pop	r28
+ 438:	08 95       	ret
 
-00000464 <__vector_7>:
+0000043a <__vector_7>:
 //---------------------------------------
 
 ISR(TIMER1_COMPA_vect)
 {
- 464:	1f 92       	push	r1
- 466:	0f 92       	push	r0
- 468:	0f b6       	in	r0, 0x3f	; 63
- 46a:	0f 92       	push	r0
- 46c:	11 24       	eor	r1, r1
- 46e:	2f 93       	push	r18
- 470:	3f 93       	push	r19
- 472:	4f 93       	push	r20
- 474:	5f 93       	push	r21
- 476:	6f 93       	push	r22
- 478:	7f 93       	push	r23
- 47a:	8f 93       	push	r24
- 47c:	9f 93       	push	r25
- 47e:	af 93       	push	r26
- 480:	bf 93       	push	r27
- 482:	ef 93       	push	r30
- 484:	ff 93       	push	r31
+ 43a:	1f 92       	push	r1
+ 43c:	0f 92       	push	r0
+ 43e:	0f b6       	in	r0, 0x3f	; 63
+ 440:	0f 92       	push	r0
+ 442:	11 24       	eor	r1, r1
+ 444:	2f 93       	push	r18
+ 446:	3f 93       	push	r19
+ 448:	4f 93       	push	r20
+ 44a:	5f 93       	push	r21
+ 44c:	6f 93       	push	r22
+ 44e:	7f 93       	push	r23
+ 450:	8f 93       	push	r24
+ 452:	9f 93       	push	r25
+ 454:	af 93       	push	r26
+ 456:	bf 93       	push	r27
+ 458:	ef 93       	push	r30
+ 45a:	ff 93       	push	r31
 	cli();
- 486:	f8 94       	cli
+ 45c:	f8 94       	cli
 	RunGame();
- 488:	0e 94 d1 01 	call	0x3a2	; 0x3a2 <RunGame>
+ 45e:	0e 94 c2 01 	call	0x384	; 0x384 <RunGame>
 	sei();
- 48c:	78 94       	sei
- 48e:	ff 91       	pop	r31
- 490:	ef 91       	pop	r30
- 492:	bf 91       	pop	r27
- 494:	af 91       	pop	r26
- 496:	9f 91       	pop	r25
- 498:	8f 91       	pop	r24
- 49a:	7f 91       	pop	r23
- 49c:	6f 91       	pop	r22
- 49e:	5f 91       	pop	r21
- 4a0:	4f 91       	pop	r20
- 4a2:	3f 91       	pop	r19
- 4a4:	2f 91       	pop	r18
- 4a6:	0f 90       	pop	r0
- 4a8:	0f be       	out	0x3f, r0	; 63
- 4aa:	0f 90       	pop	r0
- 4ac:	1f 90       	pop	r1
- 4ae:	18 95       	reti
+ 462:	78 94       	sei
+ 464:	ff 91       	pop	r31
+ 466:	ef 91       	pop	r30
+ 468:	bf 91       	pop	r27
+ 46a:	af 91       	pop	r26
+ 46c:	9f 91       	pop	r25
+ 46e:	8f 91       	pop	r24
+ 470:	7f 91       	pop	r23
+ 472:	6f 91       	pop	r22
+ 474:	5f 91       	pop	r21
+ 476:	4f 91       	pop	r20
+ 478:	3f 91       	pop	r19
+ 47a:	2f 91       	pop	r18
+ 47c:	0f 90       	pop	r0
+ 47e:	0f be       	out	0x3f, r0	; 63
+ 480:	0f 90       	pop	r0
+ 482:	1f 90       	pop	r1
+ 484:	18 95       	reti
 
-000004b0 <do_rand>:
- 4b0:	8f 92       	push	r8
- 4b2:	9f 92       	push	r9
- 4b4:	af 92       	push	r10
- 4b6:	bf 92       	push	r11
- 4b8:	cf 92       	push	r12
- 4ba:	df 92       	push	r13
- 4bc:	ef 92       	push	r14
- 4be:	ff 92       	push	r15
- 4c0:	cf 93       	push	r28
- 4c2:	df 93       	push	r29
- 4c4:	ec 01       	movw	r28, r24
- 4c6:	68 81       	ld	r22, Y
- 4c8:	79 81       	ldd	r23, Y+1	; 0x01
- 4ca:	8a 81       	ldd	r24, Y+2	; 0x02
- 4cc:	9b 81       	ldd	r25, Y+3	; 0x03
- 4ce:	61 15       	cp	r22, r1
- 4d0:	71 05       	cpc	r23, r1
- 4d2:	81 05       	cpc	r24, r1
- 4d4:	91 05       	cpc	r25, r1
- 4d6:	21 f4       	brne	.+8      	; 0x4e0 <do_rand+0x30>
- 4d8:	64 e2       	ldi	r22, 0x24	; 36
- 4da:	79 ed       	ldi	r23, 0xD9	; 217
- 4dc:	8b e5       	ldi	r24, 0x5B	; 91
- 4de:	97 e0       	ldi	r25, 0x07	; 7
- 4e0:	2d e1       	ldi	r18, 0x1D	; 29
- 4e2:	33 ef       	ldi	r19, 0xF3	; 243
- 4e4:	41 e0       	ldi	r20, 0x01	; 1
- 4e6:	50 e0       	ldi	r21, 0x00	; 0
- 4e8:	0e 94 b4 02 	call	0x568	; 0x568 <__divmodsi4>
- 4ec:	49 01       	movw	r8, r18
- 4ee:	5a 01       	movw	r10, r20
- 4f0:	9b 01       	movw	r18, r22
- 4f2:	ac 01       	movw	r20, r24
- 4f4:	a7 ea       	ldi	r26, 0xA7	; 167
- 4f6:	b1 e4       	ldi	r27, 0x41	; 65
- 4f8:	0e 94 d3 02 	call	0x5a6	; 0x5a6 <__muluhisi3>
- 4fc:	6b 01       	movw	r12, r22
- 4fe:	7c 01       	movw	r14, r24
- 500:	ac ee       	ldi	r26, 0xEC	; 236
- 502:	b4 ef       	ldi	r27, 0xF4	; 244
- 504:	a5 01       	movw	r20, r10
- 506:	94 01       	movw	r18, r8
- 508:	0e 94 e1 02 	call	0x5c2	; 0x5c2 <__mulohisi3>
- 50c:	dc 01       	movw	r26, r24
- 50e:	cb 01       	movw	r24, r22
- 510:	8c 0d       	add	r24, r12
- 512:	9d 1d       	adc	r25, r13
- 514:	ae 1d       	adc	r26, r14
- 516:	bf 1d       	adc	r27, r15
- 518:	b7 ff       	sbrs	r27, 7
- 51a:	03 c0       	rjmp	.+6      	; 0x522 <do_rand+0x72>
- 51c:	01 97       	sbiw	r24, 0x01	; 1
- 51e:	a1 09       	sbc	r26, r1
- 520:	b0 48       	sbci	r27, 0x80	; 128
- 522:	88 83       	st	Y, r24
- 524:	99 83       	std	Y+1, r25	; 0x01
- 526:	aa 83       	std	Y+2, r26	; 0x02
- 528:	bb 83       	std	Y+3, r27	; 0x03
- 52a:	9f 77       	andi	r25, 0x7F	; 127
- 52c:	df 91       	pop	r29
- 52e:	cf 91       	pop	r28
- 530:	ff 90       	pop	r15
- 532:	ef 90       	pop	r14
- 534:	df 90       	pop	r13
- 536:	cf 90       	pop	r12
- 538:	bf 90       	pop	r11
- 53a:	af 90       	pop	r10
- 53c:	9f 90       	pop	r9
- 53e:	8f 90       	pop	r8
- 540:	08 95       	ret
+00000486 <do_rand>:
+ 486:	8f 92       	push	r8
+ 488:	9f 92       	push	r9
+ 48a:	af 92       	push	r10
+ 48c:	bf 92       	push	r11
+ 48e:	cf 92       	push	r12
+ 490:	df 92       	push	r13
+ 492:	ef 92       	push	r14
+ 494:	ff 92       	push	r15
+ 496:	cf 93       	push	r28
+ 498:	df 93       	push	r29
+ 49a:	ec 01       	movw	r28, r24
+ 49c:	68 81       	ld	r22, Y
+ 49e:	79 81       	ldd	r23, Y+1	; 0x01
+ 4a0:	8a 81       	ldd	r24, Y+2	; 0x02
+ 4a2:	9b 81       	ldd	r25, Y+3	; 0x03
+ 4a4:	61 15       	cp	r22, r1
+ 4a6:	71 05       	cpc	r23, r1
+ 4a8:	81 05       	cpc	r24, r1
+ 4aa:	91 05       	cpc	r25, r1
+ 4ac:	21 f4       	brne	.+8      	; 0x4b6 <do_rand+0x30>
+ 4ae:	64 e2       	ldi	r22, 0x24	; 36
+ 4b0:	79 ed       	ldi	r23, 0xD9	; 217
+ 4b2:	8b e5       	ldi	r24, 0x5B	; 91
+ 4b4:	97 e0       	ldi	r25, 0x07	; 7
+ 4b6:	2d e1       	ldi	r18, 0x1D	; 29
+ 4b8:	33 ef       	ldi	r19, 0xF3	; 243
+ 4ba:	41 e0       	ldi	r20, 0x01	; 1
+ 4bc:	50 e0       	ldi	r21, 0x00	; 0
+ 4be:	0e 94 9f 02 	call	0x53e	; 0x53e <__divmodsi4>
+ 4c2:	49 01       	movw	r8, r18
+ 4c4:	5a 01       	movw	r10, r20
+ 4c6:	9b 01       	movw	r18, r22
+ 4c8:	ac 01       	movw	r20, r24
+ 4ca:	a7 ea       	ldi	r26, 0xA7	; 167
+ 4cc:	b1 e4       	ldi	r27, 0x41	; 65
+ 4ce:	0e 94 be 02 	call	0x57c	; 0x57c <__muluhisi3>
+ 4d2:	6b 01       	movw	r12, r22
+ 4d4:	7c 01       	movw	r14, r24
+ 4d6:	ac ee       	ldi	r26, 0xEC	; 236
+ 4d8:	b4 ef       	ldi	r27, 0xF4	; 244
+ 4da:	a5 01       	movw	r20, r10
+ 4dc:	94 01       	movw	r18, r8
+ 4de:	0e 94 cc 02 	call	0x598	; 0x598 <__mulohisi3>
+ 4e2:	dc 01       	movw	r26, r24
+ 4e4:	cb 01       	movw	r24, r22
+ 4e6:	8c 0d       	add	r24, r12
+ 4e8:	9d 1d       	adc	r25, r13
+ 4ea:	ae 1d       	adc	r26, r14
+ 4ec:	bf 1d       	adc	r27, r15
+ 4ee:	b7 ff       	sbrs	r27, 7
+ 4f0:	03 c0       	rjmp	.+6      	; 0x4f8 <do_rand+0x72>
+ 4f2:	01 97       	sbiw	r24, 0x01	; 1
+ 4f4:	a1 09       	sbc	r26, r1
+ 4f6:	b0 48       	sbci	r27, 0x80	; 128
+ 4f8:	88 83       	st	Y, r24
+ 4fa:	99 83       	std	Y+1, r25	; 0x01
+ 4fc:	aa 83       	std	Y+2, r26	; 0x02
+ 4fe:	bb 83       	std	Y+3, r27	; 0x03
+ 500:	9f 77       	andi	r25, 0x7F	; 127
+ 502:	df 91       	pop	r29
+ 504:	cf 91       	pop	r28
+ 506:	ff 90       	pop	r15
+ 508:	ef 90       	pop	r14
+ 50a:	df 90       	pop	r13
+ 50c:	cf 90       	pop	r12
+ 50e:	bf 90       	pop	r11
+ 510:	af 90       	pop	r10
+ 512:	9f 90       	pop	r9
+ 514:	8f 90       	pop	r8
+ 516:	08 95       	ret
 
-00000542 <rand_r>:
- 542:	0e 94 58 02 	call	0x4b0	; 0x4b0 <do_rand>
- 546:	08 95       	ret
+00000518 <rand_r>:
+ 518:	0e 94 43 02 	call	0x486	; 0x486 <do_rand>
+ 51c:	08 95       	ret
 
-00000548 <rand>:
- 548:	80 e6       	ldi	r24, 0x60	; 96
- 54a:	90 e0       	ldi	r25, 0x00	; 0
- 54c:	0e 94 58 02 	call	0x4b0	; 0x4b0 <do_rand>
- 550:	08 95       	ret
+0000051e <rand>:
+ 51e:	80 e6       	ldi	r24, 0x60	; 96
+ 520:	90 e0       	ldi	r25, 0x00	; 0
+ 522:	0e 94 43 02 	call	0x486	; 0x486 <do_rand>
+ 526:	08 95       	ret
 
-00000552 <srand>:
- 552:	a0 e0       	ldi	r26, 0x00	; 0
- 554:	b0 e0       	ldi	r27, 0x00	; 0
- 556:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
- 55a:	90 93 61 00 	sts	0x0061, r25	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
- 55e:	a0 93 62 00 	sts	0x0062, r26	; 0x800062 <__DATA_REGION_ORIGIN__+0x2>
- 562:	b0 93 63 00 	sts	0x0063, r27	; 0x800063 <__DATA_REGION_ORIGIN__+0x3>
- 566:	08 95       	ret
+00000528 <srand>:
+ 528:	a0 e0       	ldi	r26, 0x00	; 0
+ 52a:	b0 e0       	ldi	r27, 0x00	; 0
+ 52c:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 530:	90 93 61 00 	sts	0x0061, r25	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+ 534:	a0 93 62 00 	sts	0x0062, r26	; 0x800062 <__DATA_REGION_ORIGIN__+0x2>
+ 538:	b0 93 63 00 	sts	0x0063, r27	; 0x800063 <__DATA_REGION_ORIGIN__+0x3>
+ 53c:	08 95       	ret
 
-00000568 <__divmodsi4>:
- 568:	05 2e       	mov	r0, r21
- 56a:	97 fb       	bst	r25, 7
- 56c:	1e f4       	brtc	.+6      	; 0x574 <__divmodsi4+0xc>
- 56e:	00 94       	com	r0
- 570:	0e 94 cb 02 	call	0x596	; 0x596 <__negsi2>
- 574:	57 fd       	sbrc	r21, 7
- 576:	07 d0       	rcall	.+14     	; 0x586 <__divmodsi4_neg2>
- 578:	0e 94 e6 02 	call	0x5cc	; 0x5cc <__udivmodsi4>
- 57c:	07 fc       	sbrc	r0, 7
- 57e:	03 d0       	rcall	.+6      	; 0x586 <__divmodsi4_neg2>
- 580:	4e f4       	brtc	.+18     	; 0x594 <__divmodsi4_exit>
- 582:	0c 94 cb 02 	jmp	0x596	; 0x596 <__negsi2>
+0000053e <__divmodsi4>:
+ 53e:	05 2e       	mov	r0, r21
+ 540:	97 fb       	bst	r25, 7
+ 542:	1e f4       	brtc	.+6      	; 0x54a <__divmodsi4+0xc>
+ 544:	00 94       	com	r0
+ 546:	0e 94 b6 02 	call	0x56c	; 0x56c <__negsi2>
+ 54a:	57 fd       	sbrc	r21, 7
+ 54c:	07 d0       	rcall	.+14     	; 0x55c <__divmodsi4_neg2>
+ 54e:	0e 94 d1 02 	call	0x5a2	; 0x5a2 <__udivmodsi4>
+ 552:	07 fc       	sbrc	r0, 7
+ 554:	03 d0       	rcall	.+6      	; 0x55c <__divmodsi4_neg2>
+ 556:	4e f4       	brtc	.+18     	; 0x56a <__divmodsi4_exit>
+ 558:	0c 94 b6 02 	jmp	0x56c	; 0x56c <__negsi2>
 
-00000586 <__divmodsi4_neg2>:
- 586:	50 95       	com	r21
- 588:	40 95       	com	r20
- 58a:	30 95       	com	r19
- 58c:	21 95       	neg	r18
- 58e:	3f 4f       	sbci	r19, 0xFF	; 255
- 590:	4f 4f       	sbci	r20, 0xFF	; 255
- 592:	5f 4f       	sbci	r21, 0xFF	; 255
+0000055c <__divmodsi4_neg2>:
+ 55c:	50 95       	com	r21
+ 55e:	40 95       	com	r20
+ 560:	30 95       	com	r19
+ 562:	21 95       	neg	r18
+ 564:	3f 4f       	sbci	r19, 0xFF	; 255
+ 566:	4f 4f       	sbci	r20, 0xFF	; 255
+ 568:	5f 4f       	sbci	r21, 0xFF	; 255
 
-00000594 <__divmodsi4_exit>:
- 594:	08 95       	ret
+0000056a <__divmodsi4_exit>:
+ 56a:	08 95       	ret
 
-00000596 <__negsi2>:
- 596:	90 95       	com	r25
- 598:	80 95       	com	r24
- 59a:	70 95       	com	r23
- 59c:	61 95       	neg	r22
- 59e:	7f 4f       	sbci	r23, 0xFF	; 255
- 5a0:	8f 4f       	sbci	r24, 0xFF	; 255
- 5a2:	9f 4f       	sbci	r25, 0xFF	; 255
- 5a4:	08 95       	ret
+0000056c <__negsi2>:
+ 56c:	90 95       	com	r25
+ 56e:	80 95       	com	r24
+ 570:	70 95       	com	r23
+ 572:	61 95       	neg	r22
+ 574:	7f 4f       	sbci	r23, 0xFF	; 255
+ 576:	8f 4f       	sbci	r24, 0xFF	; 255
+ 578:	9f 4f       	sbci	r25, 0xFF	; 255
+ 57a:	08 95       	ret
 
-000005a6 <__muluhisi3>:
- 5a6:	0e 94 08 03 	call	0x610	; 0x610 <__umulhisi3>
- 5aa:	a5 9f       	mul	r26, r21
- 5ac:	90 0d       	add	r25, r0
- 5ae:	b4 9f       	mul	r27, r20
- 5b0:	90 0d       	add	r25, r0
- 5b2:	a4 9f       	mul	r26, r20
- 5b4:	80 0d       	add	r24, r0
- 5b6:	91 1d       	adc	r25, r1
- 5b8:	11 24       	eor	r1, r1
- 5ba:	08 95       	ret
+0000057c <__muluhisi3>:
+ 57c:	0e 94 f3 02 	call	0x5e6	; 0x5e6 <__umulhisi3>
+ 580:	a5 9f       	mul	r26, r21
+ 582:	90 0d       	add	r25, r0
+ 584:	b4 9f       	mul	r27, r20
+ 586:	90 0d       	add	r25, r0
+ 588:	a4 9f       	mul	r26, r20
+ 58a:	80 0d       	add	r24, r0
+ 58c:	91 1d       	adc	r25, r1
+ 58e:	11 24       	eor	r1, r1
+ 590:	08 95       	ret
 
-000005bc <__mulshisi3>:
- 5bc:	b7 ff       	sbrs	r27, 7
- 5be:	0c 94 d3 02 	jmp	0x5a6	; 0x5a6 <__muluhisi3>
+00000592 <__mulshisi3>:
+ 592:	b7 ff       	sbrs	r27, 7
+ 594:	0c 94 be 02 	jmp	0x57c	; 0x57c <__muluhisi3>
 
-000005c2 <__mulohisi3>:
- 5c2:	0e 94 d3 02 	call	0x5a6	; 0x5a6 <__muluhisi3>
- 5c6:	82 1b       	sub	r24, r18
- 5c8:	93 0b       	sbc	r25, r19
- 5ca:	08 95       	ret
+00000598 <__mulohisi3>:
+ 598:	0e 94 be 02 	call	0x57c	; 0x57c <__muluhisi3>
+ 59c:	82 1b       	sub	r24, r18
+ 59e:	93 0b       	sbc	r25, r19
+ 5a0:	08 95       	ret
 
-000005cc <__udivmodsi4>:
- 5cc:	a1 e2       	ldi	r26, 0x21	; 33
- 5ce:	1a 2e       	mov	r1, r26
- 5d0:	aa 1b       	sub	r26, r26
- 5d2:	bb 1b       	sub	r27, r27
- 5d4:	fd 01       	movw	r30, r26
- 5d6:	0d c0       	rjmp	.+26     	; 0x5f2 <__udivmodsi4_ep>
+000005a2 <__udivmodsi4>:
+ 5a2:	a1 e2       	ldi	r26, 0x21	; 33
+ 5a4:	1a 2e       	mov	r1, r26
+ 5a6:	aa 1b       	sub	r26, r26
+ 5a8:	bb 1b       	sub	r27, r27
+ 5aa:	fd 01       	movw	r30, r26
+ 5ac:	0d c0       	rjmp	.+26     	; 0x5c8 <__udivmodsi4_ep>
 
-000005d8 <__udivmodsi4_loop>:
- 5d8:	aa 1f       	adc	r26, r26
- 5da:	bb 1f       	adc	r27, r27
- 5dc:	ee 1f       	adc	r30, r30
- 5de:	ff 1f       	adc	r31, r31
- 5e0:	a2 17       	cp	r26, r18
- 5e2:	b3 07       	cpc	r27, r19
- 5e4:	e4 07       	cpc	r30, r20
- 5e6:	f5 07       	cpc	r31, r21
- 5e8:	20 f0       	brcs	.+8      	; 0x5f2 <__udivmodsi4_ep>
- 5ea:	a2 1b       	sub	r26, r18
- 5ec:	b3 0b       	sbc	r27, r19
- 5ee:	e4 0b       	sbc	r30, r20
- 5f0:	f5 0b       	sbc	r31, r21
+000005ae <__udivmodsi4_loop>:
+ 5ae:	aa 1f       	adc	r26, r26
+ 5b0:	bb 1f       	adc	r27, r27
+ 5b2:	ee 1f       	adc	r30, r30
+ 5b4:	ff 1f       	adc	r31, r31
+ 5b6:	a2 17       	cp	r26, r18
+ 5b8:	b3 07       	cpc	r27, r19
+ 5ba:	e4 07       	cpc	r30, r20
+ 5bc:	f5 07       	cpc	r31, r21
+ 5be:	20 f0       	brcs	.+8      	; 0x5c8 <__udivmodsi4_ep>
+ 5c0:	a2 1b       	sub	r26, r18
+ 5c2:	b3 0b       	sbc	r27, r19
+ 5c4:	e4 0b       	sbc	r30, r20
+ 5c6:	f5 0b       	sbc	r31, r21
 
-000005f2 <__udivmodsi4_ep>:
- 5f2:	66 1f       	adc	r22, r22
- 5f4:	77 1f       	adc	r23, r23
- 5f6:	88 1f       	adc	r24, r24
- 5f8:	99 1f       	adc	r25, r25
- 5fa:	1a 94       	dec	r1
- 5fc:	69 f7       	brne	.-38     	; 0x5d8 <__udivmodsi4_loop>
- 5fe:	60 95       	com	r22
- 600:	70 95       	com	r23
- 602:	80 95       	com	r24
- 604:	90 95       	com	r25
- 606:	9b 01       	movw	r18, r22
- 608:	ac 01       	movw	r20, r24
- 60a:	bd 01       	movw	r22, r26
- 60c:	cf 01       	movw	r24, r30
- 60e:	08 95       	ret
+000005c8 <__udivmodsi4_ep>:
+ 5c8:	66 1f       	adc	r22, r22
+ 5ca:	77 1f       	adc	r23, r23
+ 5cc:	88 1f       	adc	r24, r24
+ 5ce:	99 1f       	adc	r25, r25
+ 5d0:	1a 94       	dec	r1
+ 5d2:	69 f7       	brne	.-38     	; 0x5ae <__udivmodsi4_loop>
+ 5d4:	60 95       	com	r22
+ 5d6:	70 95       	com	r23
+ 5d8:	80 95       	com	r24
+ 5da:	90 95       	com	r25
+ 5dc:	9b 01       	movw	r18, r22
+ 5de:	ac 01       	movw	r20, r24
+ 5e0:	bd 01       	movw	r22, r26
+ 5e2:	cf 01       	movw	r24, r30
+ 5e4:	08 95       	ret
 
-00000610 <__umulhisi3>:
- 610:	a2 9f       	mul	r26, r18
- 612:	b0 01       	movw	r22, r0
- 614:	b3 9f       	mul	r27, r19
- 616:	c0 01       	movw	r24, r0
- 618:	a3 9f       	mul	r26, r19
- 61a:	70 0d       	add	r23, r0
- 61c:	81 1d       	adc	r24, r1
- 61e:	11 24       	eor	r1, r1
- 620:	91 1d       	adc	r25, r1
- 622:	b2 9f       	mul	r27, r18
- 624:	70 0d       	add	r23, r0
- 626:	81 1d       	adc	r24, r1
- 628:	11 24       	eor	r1, r1
- 62a:	91 1d       	adc	r25, r1
- 62c:	08 95       	ret
+000005e6 <__umulhisi3>:
+ 5e6:	a2 9f       	mul	r26, r18
+ 5e8:	b0 01       	movw	r22, r0
+ 5ea:	b3 9f       	mul	r27, r19
+ 5ec:	c0 01       	movw	r24, r0
+ 5ee:	a3 9f       	mul	r26, r19
+ 5f0:	70 0d       	add	r23, r0
+ 5f2:	81 1d       	adc	r24, r1
+ 5f4:	11 24       	eor	r1, r1
+ 5f6:	91 1d       	adc	r25, r1
+ 5f8:	b2 9f       	mul	r27, r18
+ 5fa:	70 0d       	add	r23, r0
+ 5fc:	81 1d       	adc	r24, r1
+ 5fe:	11 24       	eor	r1, r1
+ 600:	91 1d       	adc	r25, r1
+ 602:	08 95       	ret
 
-0000062e <_exit>:
- 62e:	f8 94       	cli
+00000604 <_exit>:
+ 604:	f8 94       	cli
 
-00000630 <__stop_program>:
- 630:	ff cf       	rjmp	.-2      	; 0x630 <__stop_program>
+00000606 <__stop_program>:
+ 606:	ff cf       	rjmp	.-2      	; 0x606 <__stop_program>
